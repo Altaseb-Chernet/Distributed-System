@@ -8,7 +8,7 @@ This project demonstrates a **distributed system** built using **Java sockets**,
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Java 17+** (or compatible JDK)
+- **Java 25** (or compatible JDK)
 - **VS Code** or any Java IDE
 - **Northwind Database** (SQL Server or compatible setup)
 - Properly configured **JDBC driver** for database connectivity
