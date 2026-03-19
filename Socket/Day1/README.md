@@ -104,16 +104,6 @@ String password = "your_password";
    ...
    ```
 
----
-
-## 🛠️ Dependency Management
-
-- Dependencies are managed via the `lib/` folder.  
-- Add JDBC drivers or other libraries as needed.  
-- VS Code users can manage dependencies via the **JAVA PROJECTS** view.
-
----
-
 ## 🌐 Distributed System Features
 
 - Multi-client support with concurrent socket handling.  
