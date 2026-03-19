@@ -28,33 +28,82 @@ public class Server {
 
             String request = in.readLine();
 
-            // connect to database
             Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
-            Statement stmt = conn.createStatement();
-
+            PreparedStatement pstmt = null;
             ResultSet rs;
 
-            if (request.equalsIgnoreCase("NAME")) {
+            // 🎯 MENU-BASED REQUEST HANDLING
+            switch (request) {
 
-                rs = stmt.executeQuery(
-                        "SELECT ContactName FROM Customers");
+                case "1":
+                    // Customers: Name starts with 'A'
+                    pstmt = conn.prepareStatement(
+                            "SELECT ContactName FROM Customers WHERE ContactName LIKE 'A%'");
+                    break;
 
-                while (rs.next()) {
-                    out.println(rs.getString("ContactName"));
+                case "2":
+                    // Customers from Germany
+                    pstmt = conn.prepareStatement(
+                            "SELECT ContactName, Country FROM Customers WHERE Country = 'Germany'");
+                    break;
+
+                case "3":
+                    // Employees from London
+                    pstmt = conn.prepareStatement(
+                            "SELECT FirstName, LastName, City FROM Employees WHERE City = 'London'");
+                    break;
+
+                case "4":
+                    // Products with price > 50
+                    pstmt = conn.prepareStatement(
+                            "SELECT ProductName, UnitPrice FROM Products WHERE UnitPrice > 50");
+                    break;
+
+                case "5":
+                    // Orders with CustomerID (example: ALFKI)
+                    pstmt = conn.prepareStatement(
+                            "SELECT OrderID, CustomerID FROM Orders WHERE CustomerID = 'ALFKI'");
+                    break;
+
+                case "6":
+                    // Suppliers from USA
+                    pstmt = conn.prepareStatement(
+                            "SELECT CompanyName, Country FROM Suppliers WHERE Country = 'USA'");
+                    break;
+
+                case "7":
+                    // Categories list
+                    pstmt = conn.prepareStatement(
+                            "SELECT CategoryName FROM Categories");
+                    break;
+
+                case "8":
+                    // Shippers list
+                    pstmt = conn.prepareStatement(
+                            "SELECT CompanyName FROM Shippers");
+                    break;
+
+                default:
+                    out.println("Invalid choice");
+                    socket.close();
+                    return;
+            }
+
+            rs = pstmt.executeQuery();
+
+            // Send results
+            ResultSetMetaData meta = rs.getMetaData();
+            int columns = meta.getColumnCount();
+
+            while (rs.next()) {
+                String row = "";
+
+                for (int i = 1; i <= columns; i++) {
+                    row += rs.getString(i) + " | ";
                 }
 
-            } else if (request.equalsIgnoreCase("COMPANY")) {
-
-                rs = stmt.executeQuery(
-                        "SELECT CompanyName FROM Customers");
-
-                while (rs.next()) {
-                    out.println(rs.getString("CompanyName"));
-                }
-
-            } else {
-                out.println("Invalid request");
+                out.println(row);
             }
 
             conn.close();

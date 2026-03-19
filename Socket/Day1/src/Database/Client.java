@@ -20,15 +20,32 @@ public class Client {
             PrintWriter out =
                     new PrintWriter(socket.getOutputStream(), true);
 
-            System.out.println("Choose operation:");
-            System.out.println("1. NAME");
-            System.out.println("2. COMPANY");
+            System.out.println("===== MENU =====");
+            System.out.println("1. Customers name starts with 'A'");
+            System.out.println("2. Customers from Germany");
+            System.out.println("3. Employees from London");
+            System.out.println("4. Products with price > 50");
+            System.out.println("5. Orders for customer ALFKI");
+            System.out.println("6. Suppliers from USA");
+            System.out.println("7. List Categories");
+            System.out.println("8. List Shippers");
+
+            System.out.print("Enter choice (number only): ");
 
             String choice = keyboard.readLine();
+
+            // 🚫 Prevent user from typing text
+            if (!choice.matches("[1-8]")) {
+                System.out.println("Invalid input! Please enter number between 1 and 8.");
+                socket.close();
+                return;
+            }
 
             out.println(choice);
 
             String response;
+
+            System.out.println("\n--- RESULTS ---");
 
             while ((response = in.readLine()) != null) {
                 System.out.println(response);
