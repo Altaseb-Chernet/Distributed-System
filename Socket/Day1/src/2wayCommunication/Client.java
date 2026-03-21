@@ -38,7 +38,7 @@ public class Client {
                     e.printStackTrace();
                 }
             });
-
+//threads are started to allow simultaneous sending and receiving of messages
             receiveThread.start();
             sendThread.start();
 
