@@ -28,6 +28,7 @@ public class cleint {
             }
             out.println(Message);
             System.out.println("in from server : " + in.readLine());
+            sc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
