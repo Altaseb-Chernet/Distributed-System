@@ -42,7 +42,7 @@ public class Server {
                     e.printStackTrace();
                 }
             });
-
+            //recieved thread start
             receiveThread.start();
             sendThread.start();
 
