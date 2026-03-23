@@ -83,7 +83,7 @@ public class Server {
                     pstmt = conn.prepareStatement(
                             "SELECT CompanyName FROM Shippers");
                     break;
-
+                // defualt is excuted if the case not implement
                 default:
                     out.println("Invalid choice");
                     socket.close();
