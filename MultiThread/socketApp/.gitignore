@@ -1,0 +1,48 @@
+# Compiled Java files
+*.class
+
+# Directories
+bin/
+out/
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Gradle and Maven
+.gradle/
+target/
+gradle/
+gradlew
+gradlew.bat
+
+# Maven wrapper
+.mvn/
+
+# Node modules (if any frontend is added)
+node_modules/
+npm-debug.log
+
+# Environment files
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# IntelliJ
+out/
