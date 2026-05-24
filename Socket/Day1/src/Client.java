@@ -3,7 +3,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class cleint {
+public class Client {
     public static void main(String[] args) {
         try {
             Socket sc = new Socket("localhost", 4000);
