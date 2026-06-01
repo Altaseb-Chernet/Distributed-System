@@ -1,0 +1,10 @@
+# Build artifacts
+**/bin/
+**/*.class
+lib/
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
